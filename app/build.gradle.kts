@@ -67,11 +67,14 @@ dependencies {
     implementation(libs.androidx.material.icons)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation(libs.androidx.lifecycle.runtime.compose)
 
     // retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.kotlinx.serialization)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp3.okhttp)
+    implementation(libs.logging.interceptor)
 
     // Coil
     implementation(libs.coil.compose)
@@ -93,6 +96,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+    implementation(libs.room.paging)
 
     // Test
     testImplementation(libs.junit)
