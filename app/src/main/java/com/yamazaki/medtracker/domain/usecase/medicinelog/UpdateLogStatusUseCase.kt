@@ -8,6 +8,6 @@ class UpdateLogStatusUseCase @Inject constructor(
     private val medicineLogRepository: MedicineLogRepository
 ) {
 
-    suspend operator fun invoke(logId: Long, status: LogStatus, takenAt: Long) =
+    suspend operator fun invoke(logId: Long, status: LogStatus, takenAt: Long?) =
         medicineLogRepository.updateLogStatus(logId, status, takenAt)
 }
