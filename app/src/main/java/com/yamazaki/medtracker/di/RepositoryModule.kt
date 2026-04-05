@@ -1,5 +1,6 @@
 package com.yamazaki.medtracker.di
 
+import com.yamazaki.medtracker.data.datastore.SettingsDataStore
 import com.yamazaki.medtracker.data.repository.DrugSearchRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineLogRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineRepositoryImpl
@@ -8,9 +9,9 @@ import com.yamazaki.medtracker.domain.repository.DrugSearchRepository
 import com.yamazaki.medtracker.domain.repository.MedicineLogRepository
 import com.yamazaki.medtracker.domain.repository.MedicineRepository
 import com.yamazaki.medtracker.domain.repository.ScheduleRepository
+import com.yamazaki.medtracker.domain.repository.SettingsRepository
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -34,4 +35,8 @@ interface RepositoryModule {
     @Singleton
     @Binds
     fun bindScheduleRepository(scheduleRepositoryImpl: ScheduleRepositoryImpl): ScheduleRepository
+
+    @Binds
+    @Singleton
+    fun bindSettingsRepository(impl: SettingsDataStore): SettingsRepository
 }
