@@ -46,4 +46,8 @@ class ScheduleRepositoryImpl @Inject constructor(
         scheduleDao.deleteSchedulesByMedicineId(medicineId)
     }
 
+    override suspend fun getScheduleById(id: Long): Schedule? {
+        return scheduleDao.getScheduleById(id)?.toDomain()
+    }
+
 }

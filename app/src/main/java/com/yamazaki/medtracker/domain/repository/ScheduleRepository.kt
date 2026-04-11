@@ -23,4 +23,7 @@ interface ScheduleRepository {
 
     /** удалить все расписания лекарства (при удалении Medicine) */
     suspend fun deleteSchedulesByMedicineId(medicineId: Long)
+
+    /** получение расписания*/
+    suspend fun getScheduleById(id: Long): Schedule?
 }

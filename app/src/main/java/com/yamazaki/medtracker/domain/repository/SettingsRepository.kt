@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 interface SettingsRepository {
 
     fun getSettings(): Flow<AppSettings>
+
     suspend fun setDarkTheme(enabled: Boolean)
+
     suspend fun set24HourFormat(enabled: Boolean)
 }

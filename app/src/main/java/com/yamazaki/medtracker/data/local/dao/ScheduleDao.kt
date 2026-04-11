@@ -37,4 +37,9 @@ interface ScheduleDao {
     */
     @Query("DELETE FROM schedule WHERE medicineId = :medicineId")
     suspend fun deleteSchedulesByMedicineId(medicineId: Long)
+    /*
+          получение расписания по id
+      */
+    @Query("SELECT * FROM schedule WHERE id = :id")
+    suspend fun getScheduleById(id: Long): ScheduleEntity?
 }
