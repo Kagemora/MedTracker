@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.MedTracker" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.MedTracker.Main" parent="android:Theme.Material.Light.NoActionBar"/>
+
+    <style name="Theme.MedTracker" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#6650A4</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_medtracker_splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.MedTracker.Main</item>
+    </style>
 </resources>

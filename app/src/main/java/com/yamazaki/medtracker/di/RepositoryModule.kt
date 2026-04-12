@@ -1,10 +1,10 @@
 package com.yamazaki.medtracker.di
 
-import com.yamazaki.medtracker.data.datastore.SettingsDataStore
 import com.yamazaki.medtracker.data.repository.DrugSearchRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineLogRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineRepositoryImpl
 import com.yamazaki.medtracker.data.repository.ScheduleRepositoryImpl
+import com.yamazaki.medtracker.data.repository.SettingsRepositoryImpl
 import com.yamazaki.medtracker.domain.repository.DrugSearchRepository
 import com.yamazaki.medtracker.domain.repository.MedicineLogRepository
 import com.yamazaki.medtracker.domain.repository.MedicineRepository
@@ -36,7 +36,8 @@ interface RepositoryModule {
     @Binds
     fun bindScheduleRepository(scheduleRepositoryImpl: ScheduleRepositoryImpl): ScheduleRepository
 
-    @Binds
+
     @Singleton
-    fun bindSettingsRepository(impl: SettingsDataStore): SettingsRepository
+    @Binds
+    fun bindSettingsRepository(impl: SettingsRepositoryImpl): SettingsRepository
 }
