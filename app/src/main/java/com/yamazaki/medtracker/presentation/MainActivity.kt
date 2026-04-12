@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.yamazaki.medtracker.presentation.navigation.NavGraph
 import com.yamazaki.medtracker.presentation.ui.theme.MedTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val settings by viewModel.settings.collectAsStateWithLifecycle()
             MedTrackerTheme(isDarkTheme = settings.isDarkTheme) {
-
+                NavGraph()
             }
         }
     }
