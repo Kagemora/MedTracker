@@ -33,3 +33,13 @@ Navigation Compose
 Coil 3
 
 androidx.core.splashscreen
+
+# Запуск проекта
+
+Склонируй репозиторий:
+
+bashgit clone https://github.com/Kagemora/MedTracker.git
+
+Запусти на устройстве или эмуляторе с API 26+
+
+API-ключи не нужны — OpenFDA является публичным API без аутентификации.
