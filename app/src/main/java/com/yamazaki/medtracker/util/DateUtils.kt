@@ -1,5 +1,9 @@
 package com.yamazaki.medtracker.util
 
+import com.yamazaki.medtracker.util.DateUtils.calculateDelay
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 
 object DateUtils {
@@ -99,5 +103,22 @@ object DateUtils {
         }
         // все 7 дней проверены — подходящего не нашли (days некорректный)
         return -1L
+    }
+
+    fun formatTime(timestamp: Long, is24Hour: Boolean = true): String {
+        val pattern = if (is24Hour) "HH:mm" else "hh:mm a"
+        return Instant.ofEpochMilli(timestamp)
+            .atZone(ZoneId.systemDefault())
+            .format(DateTimeFormatter.ofPattern(pattern))
+    }
+
+    fun formatScheduleTime(hour: Int, minute: Int, is24Hour: Boolean = true): String {
+        val calendar = Calendar.getInstance().apply {
+            set(Calendar.HOUR_OF_DAY, hour)
+            set(Calendar.MINUTE, minute)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+        return formatTime(calendar.timeInMillis, is24Hour)
     }
 }

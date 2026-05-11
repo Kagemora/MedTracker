@@ -3,11 +3,13 @@ package com.yamazaki.medtracker.di
 import com.yamazaki.medtracker.data.repository.DrugSearchRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineLogRepositoryImpl
 import com.yamazaki.medtracker.data.repository.MedicineRepositoryImpl
+import com.yamazaki.medtracker.data.repository.NotificationRepositoryImpl
 import com.yamazaki.medtracker.data.repository.ScheduleRepositoryImpl
 import com.yamazaki.medtracker.data.repository.SettingsRepositoryImpl
 import com.yamazaki.medtracker.domain.repository.DrugSearchRepository
 import com.yamazaki.medtracker.domain.repository.MedicineLogRepository
 import com.yamazaki.medtracker.domain.repository.MedicineRepository
+import com.yamazaki.medtracker.domain.repository.NotificationRepository
 import com.yamazaki.medtracker.domain.repository.ScheduleRepository
 import com.yamazaki.medtracker.domain.repository.SettingsRepository
 import dagger.Binds
@@ -36,8 +38,12 @@ interface RepositoryModule {
     @Binds
     fun bindScheduleRepository(scheduleRepositoryImpl: ScheduleRepositoryImpl): ScheduleRepository
 
-
     @Singleton
     @Binds
     fun bindSettingsRepository(impl: SettingsRepositoryImpl): SettingsRepository
+
+    @Singleton
+    @Binds
+    fun bindNotificationRepository(impl: NotificationRepositoryImpl): NotificationRepository
+
 }

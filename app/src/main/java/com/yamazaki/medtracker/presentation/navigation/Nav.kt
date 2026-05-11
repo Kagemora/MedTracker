@@ -1,6 +1,5 @@
 package com.yamazaki.medtracker.presentation.navigation
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.Home
@@ -13,8 +12,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -26,9 +26,9 @@ import com.yamazaki.medtracker.presentation.history.HistoryScreen
 import com.yamazaki.medtracker.presentation.home.HomeScreen
 import com.yamazaki.medtracker.presentation.search.SearchScreen
 import com.yamazaki.medtracker.presentation.settings.SettingsScreen
+import com.yamazaki.medtracker.presentation.settings.SettingsViewModel
 
 sealed class Screen(val route: String) {
-
     data object Home : Screen("home")
     data object Search : Screen("search")
     data object History : Screen("history")
@@ -42,32 +42,20 @@ data class BottomNavItem(
 )
 
 val bottomNavItems = listOf(
-    BottomNavItem(
-        screen = Screen.Home,
-        title = "Главная",
-        icon = Icons.Rounded.Home
-    ),
-    BottomNavItem(
-        screen = Screen.Search,
-        title = "Поиск",
-        icon = Icons.Rounded.Search
-    ),
-    BottomNavItem(
-        screen = Screen.History,
-        title = "История",
-        icon = Icons.Rounded.History
-    ),
-    BottomNavItem(
-        screen = Screen.Settings,
-        title = "Настройки",
-        icon = Icons.Rounded.Settings
-    )
+    BottomNavItem(screen = Screen.Home, title = "Главная", icon = Icons.Rounded.Home),
+    BottomNavItem(screen = Screen.Search, title = "Поиск", icon = Icons.Rounded.Search),
+    BottomNavItem(screen = Screen.History, title = "История", icon = Icons.Rounded.History),
+    BottomNavItem(screen = Screen.Settings, title = "Настройки", icon = Icons.Rounded.Settings)
 )
 
 @Composable
 fun NavGraph(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+    settingsViewModel: SettingsViewModel = hiltViewModel()
 ) {
+
+    val settings by settingsViewModel.settings.collectAsStateWithLifecycle()
+
     Scaffold(
         bottomBar = {
             NavigationBar {
@@ -89,10 +77,7 @@ fun NavGraph(
                             }
                         },
                         icon = {
-                            Icon(
-                                imageVector = item.icon,
-                                contentDescription = item.title
-                            )
+                            Icon(imageVector = item.icon, contentDescription = item.title)
                         },
                         label = { Text(item.title) }
                     )
@@ -102,17 +87,16 @@ fun NavGraph(
     ) { paddingValues ->
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
-            modifier = Modifier.padding(paddingValues)
+            startDestination = Screen.Home.route
         ) {
             composable(Screen.Home.route) {
-                HomeScreen()
+                HomeScreen(is24Hour = settings.is24HourFormat)
             }
             composable(Screen.Search.route) {
-                SearchScreen()
+                SearchScreen(is24Hour = settings.is24HourFormat)
             }
             composable(Screen.History.route) {
-                HistoryScreen()
+                HistoryScreen(is24Hour = settings.is24HourFormat)
             }
             composable(Screen.Settings.route) {
                 SettingsScreen()

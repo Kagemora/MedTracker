@@ -22,7 +22,6 @@ class MedTrackerApp : Application(), Configuration.Provider {
         scheduleCleanup()
     }
 
-    //чистка логов с проверкой раз в 7 дней
     private fun scheduleCleanup() {
         val request = PeriodicWorkRequestBuilder<CleanupWorker>(
             7, TimeUnit.DAYS

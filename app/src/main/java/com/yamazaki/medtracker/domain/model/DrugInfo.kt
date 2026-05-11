@@ -1,6 +1,7 @@
 package com.yamazaki.medtracker.domain.model
 
 data class DrugInfo(
+    val id: String,
     val brandName: String,
     val genericName: String,
     val manufacturer: String,

@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DrugResultDto(
+    val id: String? = null,
     val openfda: OpenFdaDto = OpenFdaDto(),
     val purpose: List<String> = emptyList(),
     val warnings: List<String> = emptyList()

@@ -5,6 +5,7 @@ import com.yamazaki.medtracker.domain.model.DrugInfo
 
 fun DrugResultDto.toDomain(): DrugInfo {
     return DrugInfo(
+        id = id ?: "${openfda.brandName.firstOrNull()}_${openfda.genericName.firstOrNull()}",
         brandName = openfda.brandName.firstOrNull() ?: "Неизвестно",
         genericName = openfda.genericName.firstOrNull() ?: "Неизвестно",
         manufacturer = openfda.manufacturerName.firstOrNull() ?: "Неизвестно",
